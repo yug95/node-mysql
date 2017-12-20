@@ -1,0 +1,757 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Node and Mysql swagger documentation",
+      "description": "This is aimed to maintain sampling related transactions like user and other etc. ",
+      "termsOfService": "http://www.itjunkies.in",
+      "contact": {
+        "name": "yugagrawal95@gmail.com"
+      }
+    },
+    "host": "dev.itjunkies.in",
+    "basePath": "/",
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "consumes": [
+      "application/x-www-form-urlencoded"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/api/login": {
+        "post": {
+          "tags": [
+            "Login"
+          ],
+          "description": "Returns access token",
+          "operationId": "Login",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "type": "string",
+              "description": "Content-Type entity header is used to indicate the media type of the resource. Accepted value 'application/x-www-form-urlencoded'"
+            },
+            {
+              "name": "request",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/auth"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Login Response",
+              "schema": {
+                "$ref": "#/definitions/authTokenResponse"
+              }
+            },
+            "401": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/errorModel401Auth"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/errorModel404"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/errorModel500"
+              }
+            }
+          }
+        }
+      },
+      "/secureApi/user": {
+        "post": {
+          "tags": [
+            "User model"
+          ],
+          "description": "Add a new user",
+          "operationId": "User",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "type": "string",
+              "description": "Content-Type entity header is used to indicate the media type of the resource. Accepted value 'application/x-www-form-urlencoded'"
+            },
+            {
+              "name": "access_token",
+              "in": "header",
+              "required": true,
+              "description": "access token can be generated using auth/login end point. <br/>ex: access_token = kQ60GIXXXXoG8x8",
+              "type": "string"
+            },
+            {
+              "name": "request",
+              "in": "body",
+              "description": "Feedback object needs to be saved",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/userRequest"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/userResponse"
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/definitions/errorModel400Feedback"
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "schema": {
+                "$ref": "#/definitions/errorModel401"
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "schema": {
+                "$ref": "#/definitions/errorModel404"
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "schema": {
+                "$ref": "#/definitions/errorModelValidationFeedback"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/definitions/errorModel500"
+              }
+            }
+          }
+        },
+        "get": {
+            "tags": [
+              "User model"
+            ],
+            "description": "get all user",
+            "operationId": "get User",
+            "consumes": [
+              "application/x-www-form-urlencoded"
+            ],
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [
+              {
+                "name": "Content-Type",
+                "in": "header",
+                "required": true,
+                "type": "string",
+                "description": "Content-Type entity header is used to indicate the media type of the resource. Accepted value 'application/x-www-form-urlencoded'"
+              },
+              {
+                "name": "token",
+                "in": "header",
+                "required": true,
+                "description": "access token can be generated using auth/login end point. <br/>ex: access_token = kQ60GIXXXXoG8x8",
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "201": {
+                "description": "Successful operation",
+                "schema": {
+                  "$ref": "#/definitions/userResponse"
+                }
+              },
+              "400": {
+                "description": "Bad Request",
+                "schema": {
+                  "$ref": "#/definitions/errorModel400Feedback"
+                }
+              },
+              "401": {
+                "description": "Unauthorized",
+                "schema": {
+                  "$ref": "#/definitions/errorModel401"
+                }
+              },
+              "404": {
+                "description": "Not Found",
+                "schema": {
+                  "$ref": "#/definitions/errorModel404"
+                }
+              },
+              "422": {
+                "description": "Validation Error",
+                "schema": {
+                  "$ref": "#/definitions/errorModelValidationFeedback"
+                }
+              },
+              "500": {
+                "description": "Internal Server Error",
+                "schema": {
+                  "$ref": "#/definitions/errorModel500"
+                }
+              }
+            }
+          }
+        },
+        "/secureApi/user/{userId}": {
+            "delete": {
+                "tags": [
+                  "User model"
+                ],
+                "description": "Add a new user",
+                "operationId": "delete User",
+                "consumes": [
+                  "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "parameters": [
+                  {
+                    "name": "Content-Type",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Content-Type entity header is used to indicate the media type of the resource. Accepted value 'application/x-www-form-urlencoded'"
+                  },
+                  {
+                    "name": "access_token",
+                    "in": "header",
+                    "required": true,
+                    "description": "access token can be generated using auth/login end point. <br/>ex: access_token = kQ60GIXXXXoG8x8",
+                    "type": "string"
+                  },
+                  {
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "userId",
+                    "type": "string"
+                  },
+                  {
+                    "name": "request",
+                    "in": "body",
+                    "description": "Feedback object needs to be saved",
+                    "required": true,
+                    "schema": {
+                      "$ref": "#/definitions/userRequest"
+                    }
+                  }
+                ],
+                "responses": {
+                  "201": {
+                    "description": "Successful operation",
+                    "schema": {
+                      "$ref": "#/definitions/userResponse"
+                    }
+                  },
+                  "400": {
+                    "description": "Bad Request",
+                    "schema": {
+                      "$ref": "#/definitions/errorModel400Feedback"
+                    }
+                  },
+                  "401": {
+                    "description": "Unauthorized",
+                    "schema": {
+                      "$ref": "#/definitions/errorModel401"
+                    }
+                  },
+                  "404": {
+                    "description": "Not Found",
+                    "schema": {
+                      "$ref": "#/definitions/errorModel404"
+                    }
+                  },
+                  "422": {
+                    "description": "Validation Error",
+                    "schema": {
+                      "$ref": "#/definitions/errorModelValidationFeedback"
+                    }
+                  },
+                  "500": {
+                    "description": "Internal Server Error",
+                    "schema": {
+                      "$ref": "#/definitions/errorModel500"
+                    }
+                  }
+                }
+              },
+              "put": {
+                "tags": [
+                  "User model"
+                ],
+                "description": "get all user",
+                "operationId": "update User",
+                "consumes": [
+                  "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                  "application/json"
+                ],
+                "parameters": [
+                  {
+                    "name": "Content-Type",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Content-Type entity header is used to indicate the media type of the resource. Accepted value 'application/x-www-form-urlencoded'"
+                  },
+                  {
+                    "name": "token",
+                    "in": "header",
+                    "required": true,
+                    "description": "access token can be generated using auth/login end point. <br/>ex: access_token = kQ60GIXXXXoG8x8",
+                    "type": "string"
+                  },
+                  {
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "userId",
+                    "type": "string"
+                  }
+                ],
+                "responses": {
+                  "201": {
+                    "description": "Successful operation",
+                    "schema": {
+                      "$ref": "#/definitions/userResponse"
+                    }
+                  },
+                  "400": {
+                    "description": "Bad Request",
+                    "schema": {
+                      "$ref": "#/definitions/errorModel400Feedback"
+                    }
+                  },
+                  "401": {
+                    "description": "Unauthorized",
+                    "schema": {
+                      "$ref": "#/definitions/errorModel401"
+                    }
+                  },
+                  "404": {
+                    "description": "Not Found",
+                    "schema": {
+                      "$ref": "#/definitions/errorModel404"
+                    }
+                  },
+                  "422": {
+                    "description": "Validation Error",
+                    "schema": {
+                      "$ref": "#/definitions/errorModelValidationFeedback"
+                    }
+                  },
+                  "500": {
+                    "description": "Internal Server Error",
+                    "schema": {
+                      "$ref": "#/definitions/errorModel500"
+                    }
+                  }
+                }
+              }
+            }
+        },
+    "definitions": {
+      "userRequest": {
+        "type": "object",
+        "required": [
+            "username",
+            "password"
+        ],
+        "properties": {
+            "username": {
+                "type": "string",
+                "maxLength": 10,
+                "description": "name of user.",
+                "example": 1
+            },
+            "password":{
+                "type": "string",
+                "maxLength": 10,
+                "description": "password of user.",
+                "example": 1
+            }
+        }
+      },
+      "userResponse": {
+        "type": "array",
+        "items":{
+        "properties": {
+            "id":{
+                "type": "integer",
+                "description": "id of username"
+            },
+            "username": {
+               "type": "string",
+               "description": "All username"
+            },
+            "password": {
+               "type": "string",
+               "description": "related username password"
+            }
+        }
+        }
+    },
+      "auth": {
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "username"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 100,
+            "description": "Password matching the username."
+          }
+        }
+      },
+      "authTokenResponse": {
+        "type": "object",
+        "required": [
+          "access_token",
+          "ttl",
+          "created",
+          "userId"
+        ],
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "maxLength": 360,
+            "description": "Access token of loggged in user. The token offers access to a specific resource for a time period.",
+            "example": "kQ60GITBqiwNH6eS3SrRpJ30fafbGxcnGnaJWUdmNFSV0eniGa3NZHG2uRRoG8x8"
+          },
+          "ttl": {
+            "type": "integer",
+            "format": "int32",
+            "description": "A ttl (time to live) property with a value in seconds describes how long the access token is valid."
+          },
+          "created": {
+            "type": "string",
+            "description": "TimeStamp when access token (id) is created."
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Unique id of logged in user"
+          },
+          "expireBy": {
+            "type": "string",
+            "description": "TimeStamp when access token (id) gets expired."
+          }
+        }
+      },
+      "errorModel401Auth": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "statusCode",
+              "name",
+              "message",
+              "code"
+            ],
+            "properties": {
+              "statusCode": {
+                "type": "integer",
+                "format": "int32",
+                "description": "A number to identify specific problems encountered during the API invocation.",
+                "example": 400
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the error.",
+                "maxLength": 1000
+              },
+              "message": {
+                "type": "string",
+                "description": "The error message.",
+                "maxLength": 1000
+              },
+              "code": {
+                "type": "string",
+                "description": "Short Description of error.<br/> example:LOGIN_FAILED, INVALID_TOKEN",
+                "example": "LOGIN_FAILED"
+              }
+            }
+          }
+        }
+      },
+      "errorModel400Feedback": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "statusCode",
+              "name",
+              "message",
+              "code"
+            ],
+            "properties": {
+              "statusCode": {
+                "type": "integer",
+                "format": "int32",
+                "description": "A number to identify specific problems encountered during the API invocation.",
+                "example": 400
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the error.",
+                "maxLength": 1000
+              },
+              "message": {
+                "type": "string",
+                "description": "The error message.",
+                "maxLength": 1000
+              },
+              "code": {
+                "type": "string",
+                "description": "Short Description of error.<br/> example:INVALID_USER",
+                "example": "INVALID_USER"
+              }
+            }
+          }
+        }
+      },
+      "errorModel400MediaType": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "statusCode",
+              "name",
+              "message",
+              "code"
+            ],
+            "properties": {
+              "statusCode": {
+                "type": "integer",
+                "format": "int32",
+                "description": "A number to identify specific problems encountered during the API invocation.",
+                "example": 400
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the error.",
+                "maxLength": 1000
+              },
+              "message": {
+                "type": "string",
+                "description": "The error message.",
+                "maxLength": 1000
+              },
+              "code": {
+                "type": "string",
+                "description": "Short Description of error.<br/> example:INVALID_FILE",
+                "example": "INVALID_FILE"
+              }
+            }
+          }
+        }
+      },
+      "errorModel401": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "statusCode",
+              "name",
+              "message",
+              "code"
+            ],
+            "properties": {
+              "statusCode": {
+                "type": "integer",
+                "format": "int32",
+                "description": "A number to identify specific problems encountered during the API invocation.",
+                "example": 401
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the error.",
+                "maxLength": 1000
+              },
+              "message": {
+                "type": "string",
+                "description": "The error message.",
+                "maxLength": 1000
+              },
+              "code": {
+                "type": "string",
+                "description": "Short Description of error.<br/> example: AUTHORIZATION_REQUIRED, INVALID_TOKEN",
+                "example": "AUTHORIZATION_REQUIRED"
+              }
+            }
+          }
+        }
+      },
+      "errorModel500": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "statusCode",
+              "name",
+              "message",
+              "code"
+            ],
+            "properties": {
+              "statusCode": {
+                "type": "integer",
+                "format": "int32",
+                "description": "A number to identify specific problems encountered during the API invocation.",
+                "example": 500
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the error.",
+                "maxLength": 1000
+              },
+              "message": {
+                "type": "string",
+                "description": "The error message.",
+                "maxLength": 1000,
+                "example": "Internal Server Error"
+              },
+              "code": {
+                "type": "string",
+                "description": "Code of the error. Example: EREQUEST, EPARAM",
+                "example": "EREQUEST"
+              }
+            }
+          }
+        }
+      },
+      "errorModel404": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "statusCode",
+              "name",
+              "message"
+            ],
+            "properties": {
+              "statusCode": {
+                "type": "integer",
+                "format": "int32",
+                "description": "A number to identify specific problems encountered during the API invocation.",
+                "example": 404
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the error.",
+                "maxLength": 1000
+              },
+              "message": {
+                "type": "string",
+                "description": "The error message.",
+                "maxLength": 1000
+              },
+              "code": {
+                "type": "string",
+                "description": "Code of the error. Example: NOT_FOUND",
+                "example": "NOT_FOUND"
+              }
+            }
+          }
+        }
+      },
+      "errorModelValidationFeedback": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "statusCode",
+              "name",
+              "message"
+            ],
+            "properties": {
+              "statusCode": {
+                "type": "integer",
+                "format": "int32",
+                "description": "A number to identify specific problems encountered during the API invocation.",
+                "example": 422
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the error.",
+                "maxLength": 1000
+              },
+              "message": {
+                "type": "string",
+                "description": "The error message.",
+                "maxLength": 1000
+              },
+              "details": {
+                "type": "object",
+                "description": "Details of the error.",
+                "properties": {
+                  "context": {
+                    "type": "object",
+                    "description": "Object containing context details."
+                  },
+                  "codes": {
+                    "type": "array",
+                    "items": {},
+                    "description": "An array containing error codes of the entity passed in body/query string.<br /><br /> Format of the error code is as below <br /> {property of object}_REQUIRED : Property is mandatory in the entity.<br /> {property of object}_INVALID_TYPE: Property type is not matching. Ex: Integer, String etc. <br /> {property of object}_INVALID_FORMAT: Property format is not as expected. Ex: Date format. <br /> {property of object}_INVALID_LENGTH: Property length is not matching. <br /><br /> Example: CAMPAIGN_REQUIRED, CONSUMER_NAME_INVALID_TYPE, MEDIA[0]_INVALID_TYPE"
+                  },
+                  "messages": {
+                    "type": "array",
+                    "items": {},
+                    "description": "An array containing detail error message.<br/> <br/> Example:  <br/>[ {'CAMPAIGN_REQUIRED':'should have required property campaign'}, {'CONSUMER_NAME_INVALID_TYPE':'should be string'}, {'MEDIA[0]_INVALID_TYPE': 'should be integer'}]"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
