@@ -2,7 +2,7 @@
 
 A simple and structured way boilerplate for Node with MySQL, equipped with MVC layer model with basic validation of schema and common error handler, authentication and easily pluggable code base.
 
-This Boilerplate have a basic CRUD operation with MySQL, authetication of API endpoint with JWT Token and Validation of request and response of each route. It contained a documentation folder which contain swagger documentation easy for front-end developer to use and understand.
+This Boilerplate have a basic CRUD operation with MySQL, authetication of API endpoint with JWT Token and Validation of request and response of each route. It contained a documentation folder which contain swagger documentation easy for front-end developer to use and understand.It contained Pm2 which helps to restart, reload and monitor application in production, provides zero downtime availability
 
 # PreRequisite
 
@@ -57,14 +57,26 @@ npm install nodemon
 
 ---
 
+### 6. pm2
+```
+npm install pm2  
+```
+* pm2 will watch, restart and reload application if any crashes happen, it provide cluster mode as well as zero downtime failure.  [know more about pm2](https://www.npmjs.com/package/pm2)
+* To Know more about pm2 [check here](http://pm2.keymetrics.io/docs/usage/quick-start/)
+
+---
+
 # Get Started
 
 1. `$ git clone https://github.com/yug95/node-mysql.git`
 2. `$ npm install`
 3. Launch Enviornment:
     * `$ node app.js or nodemon app.js`
-4. Open in browser:
+4. In Cluster mode with the help of pm2 [optional step]:
+    * `$ pm2 start app.js or pm2 start app.js -i <no of instances>`
+5. Open in browser:
     * open `http://localhost:9890`
+
 
 
 # API Usage 
@@ -95,6 +107,7 @@ Example object for login and Post request -
 * Used Connection Pooling which lead to reduce number of conncetion at any point of time and reduce stress in DB which leads to better availability and Performance of DB.
 * Used common error structure format for all type of error throwing in Application.
 * Includes `documents` folder which contain swagger representation both in JSON and HTML, which will help front-end developer for better understanding.
+* `Pm2` a process manager which help to watch, reload, restart and monitor with load balancer in each and every activity.
 
 # Swagger Related task
 

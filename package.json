@@ -14,7 +14,8 @@
     "cors": "*",
     "express": "*",
     "jsonwebtoken": "^8.1.0",
-    "nodemon": "^1.13.3"
+    "nodemon": "^1.13.3",
+    "pm2": "^2.9.1"
   },
   "author": "",
   "license": "ISC"
