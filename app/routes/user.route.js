@@ -2,7 +2,9 @@ const userService = require('../services/user.service');
 var schema = require('../schema/userValidationSchema.json')
 var iValidator = require('../../common/iValidator');
 var errorCode = require('../../common/error-code');
-var errorMessage = require('../../common/error-methods')
+var errorMessage = require('../../common/error-methods');
+var mail = require('./../../common/mailer.js');
+
 
 function init(router) {
     router.route('/user')
@@ -18,6 +20,7 @@ function getAllUsers(req,res) {
   userService.getAllUser().then((data) => {
       res.send(data);
     }).catch((err) => {
+      mail.mail(err);
       res.send(err);
     });
 }
@@ -34,6 +37,7 @@ function getUserById(req,res) {
   userService.getUserById(userId).then((data) => {
       res.send(data);
     }).catch((err) => {
+      mail.mail(err);
       res.send(err);
     });
 }
@@ -50,6 +54,7 @@ function addUser(req,res) {
   userService.addUser(userData).then((data) => {
     res.json(data);
   }).catch((err) => {
+    mail.mail(err);
     res.json(err);
   });
 
@@ -62,6 +67,7 @@ function updateUser(req,res) {
    userService.updateUser(id,userData).then((data)=>{
       res.json(data);
   }).catch((err)=>{
+      mail.mail(err);
       res.json(err);
    });
 }
@@ -72,6 +78,7 @@ function deleteUser(req,res) {
   userService.deleteUser(delId).then((data)=>{
     res.json(data);
   }).catch((err)=>{
+     mail.mail(err);
       res.json(err);
   });
 }

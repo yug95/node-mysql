@@ -2,7 +2,9 @@ const authenticService = require('../services/authentic.service');
 var schema = require('../schema/userValidationSchema.json')
 var iValidator = require('../../common/iValidator');
 var errorCode = require('../../common/error-code');
-var errorMessage = require('../../common/error-methods')
+var errorMessage = require('../../common/error-methods');
+var mail = require('./../../common/mailer.js');
+
 
 const jwt = require('jsonwebtoken');
 
@@ -31,6 +33,7 @@ function authentic(req,res) {
       });
     }
   }).catch((err) => {
+    mail.mail(err);
     res.json(err);
   });
 
