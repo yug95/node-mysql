@@ -3,20 +3,21 @@ var nodemailer = require("nodemailer");
 var smtpTransport = nodemailer.createTransport({
    service: "Yahoo",  // sets automatically host, port and connection security settings
    auth: {
-       user: "xxxxxxxxxxxx@yahoo.com",
-       pass: "xxxxxxxxxxx"
+       user: "xxxxxxxxxx95@yahoo.com",
+       pass: "xxxxxxxxxxxx"
    }
 });
 
 function mail(messageBody) {
+    let messageBodyJson = JSON.stringify(messageBody)
     smtpTransport.sendMail({  //email options
-        from: "xxxxxxxxx95@yahoo.com", // sender address.  Must be the same as authenticated user if using Gmail.
-        to: "xxxxxxxxx95@gmail.com", // receiver
+        from: "xxxxxxxxxx95@yahoo.com", // sender address.  Must be the same as authenticated user if using Gmail.
+        to: "xxxxxxxxxx95@gmail.com", // receiver
         subject: "Emailing with nodemailer", // subject
-        text: messageBody // body
+        text: messageBodyJson // body
      }, function(error, response){  //callback
         if(error){
-            console.log(error);
+           console.log("error",error);
         }else{
             console.log(response);
         }
