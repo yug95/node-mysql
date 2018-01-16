@@ -126,7 +126,7 @@ For Other Crud request -
 ```
 {
    "user":"username",
-   "age::11,
+   "age:11,
    "state":"statename",
    "country":"countryname"
 }
