@@ -1,0 +1,18 @@
+config:
+  target: 'http://localhost:9890'
+  phases:
+    - duration: 60
+      arrivalRate: 200
+  defaults:
+    headers:
+      token: 'token'
+scenarios:
+  - flow:
+    - post:
+        url: "/secureApi/user"
+        json:
+         name: "lokesh"
+         age: 22
+         state: "karna"
+         country: "india"
+        

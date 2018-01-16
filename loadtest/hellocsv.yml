@@ -1,0 +1,24 @@
+config:
+  target: 'http://localhost:9890'
+  phases:
+    - duration: 60
+      arrivalRate: 10
+  defaults:
+    headers:
+      token: 'token'
+  payload:
+    path: "./hello.csv"
+    fields:
+      - "name"
+      - "age"
+      - "state"
+      - "country"
+scenarios:
+  - flow:    
+    - post:
+        url: "/secureApi/user"
+        json:
+         name: "{{name}}" 
+         age: 11
+         state: "{{state}}"
+         country: "{{country}}"
