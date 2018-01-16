@@ -2,7 +2,7 @@
 
 A simple and structured way boilerplate for Node with MySQL, equipped with MVC layer model with basic validation of schema and common error handler, authentication and easily pluggable code base.
 
-This Boilerplate have a basic CRUD operation with MySQL, authetication of API endpoint with JWT Token and Validation of request and response of each route. It contained a documentation folder which contain swagger documentation easy for front-end developer to use and understand. It contained Pm2 which helps to restart, reload and monitor application in production, provides zero downtime availability. It has Nodemailer which will send email. It has bcrypt module which will encrypt password and make it more secure.
+This Boilerplate have a basic CRUD operation with MySQL, authetication of API endpoint with JWT Token and Validation of request and response of each route. It contained a documentation folder which contain swagger documentation easy for front-end developer to use and understand. It contained Pm2 which helps to restart, reload and monitor application in production, provides zero downtime availability. It has Nodemailer which will send email. It has bcrypt module which will encrypt password and make it more secure. It contain Artillery for load testing.
 
 # PreRequisite
 
@@ -75,9 +75,16 @@ npm install nodemailer
 
 ---
 
+### 8. artillery
+```
+npm install artillery  
+```
+* artillery will perform load testing and gives logs, how sustainable your Api to perform number of request in per second .[know more about artillery](https://www.npmjs.com/package/artillery)
+* To Know more about artillery [check here](https://artillery.io/)
+
 ---
 
-### 8. bcrypt
+### 9. bcrypt
 ```
 npm install bcrypt  
 ```
@@ -106,7 +113,7 @@ npm install bcrypt
 2. other crud route are in secureApi -  `localhost:9890/secureApi/user`.
      * In all GET, PUT, DELETE and POST request pass `token` in header which you get in login response.
 
-Example object for login and Post request -
+Example object for login request -
 
 ```
 {
@@ -114,7 +121,18 @@ Example object for login and Post request -
     "password":"testpass"
 }
 ```
+For Other Crud request - 
 
+```
+{
+   "user":"username",
+   "age::11,
+   "state":"statename",
+   "country":"countryname"
+}
+
+```
+Note: You have to pass `token` for each request as header which youi will get in login response.
 
 # Features
 
@@ -130,6 +148,7 @@ Example object for login and Post request -
 * `Pm2` a process manager which help to watch, reload, restart and monitor with load balancer in each and every activity.
 * `nodemailer` is used to send mail over SMTP. as for i now used for sending mail if error comes.
 * `bcrypt` is used to encrypt your password through salt and hashing technique and which won't store password as plain text in database.
+* `artillery` is used to perform load testing which will check sustainibility of your API at `high traffic`.
 
 # Swagger Related task
 
@@ -142,7 +161,15 @@ Example object for login and Post request -
 
 ---
 
-        
+# Artillery Run 
+
+1. First go to `/loadtest` folder
+2. you can use artillery in 2 way :-
+   * by hardcoding data in yml file.
+   * getting data by `.csv` file.
+3. For option 1 run - `artillery run hello.yml`
+4. For option 2 first get CSV file with data.
+5. define path in yml file and run example as i Did :- `artillery run hellocsv.yml`        
 
 
 
