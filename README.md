@@ -2,7 +2,7 @@
 
 A simple and structured way boilerplate for Node with MySQL, equipped with MVC layer model with basic validation of schema and common error handler, authentication and easily pluggable code base.
 
-This Boilerplate have a basic CRUD operation with MySQL, authetication of API endpoint with JWT Token and Validation of request and response of each route. It contained a documentation folder which contain swagger documentation easy for front-end developer to use and understand. It contained Pm2 which helps to restart, reload and monitor application in production, provides zero downtime availability. It has Nodemailer which will send email.
+This Boilerplate have a basic CRUD operation with MySQL, authetication of API endpoint with JWT Token and Validation of request and response of each route. It contained a documentation folder which contain swagger documentation easy for front-end developer to use and understand. It contained Pm2 which helps to restart, reload and monitor application in production, provides zero downtime availability. It has Nodemailer which will send email. It has bcrypt module which will encrypt password and make it more secure.
 
 # PreRequisite
 
@@ -75,6 +75,17 @@ npm install nodemailer
 
 ---
 
+---
+
+### 8. bcrypt
+```
+npm install bcrypt  
+```
+* bcrypt will encrypt your password throughing hashing so your password won't store as plain text .[know more about bcrypt](https://www.npmjs.com/package/bcrypt)
+* To Know more about nodemailer [check here](https://www.npmjs.com/package/bcrypt)
+
+---
+
 # Get Started
 
 1. `$ git clone https://github.com/yug95/node-mysql.git`
@@ -118,6 +129,7 @@ Example object for login and Post request -
 * Includes `documents` folder which contain swagger representation both in JSON and HTML, which will help front-end developer for better understanding.
 * `Pm2` a process manager which help to watch, reload, restart and monitor with load balancer in each and every activity.
 * `nodemailer` is used to send mail over SMTP. as for i now used for sending mail if error comes.
+* `bcrypt` is used to encrypt your password through salt and hashing technique and which won't store password as plain text in database.
 
 # Swagger Related task
 

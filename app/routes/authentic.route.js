@@ -1,5 +1,5 @@
 const authenticService = require('../services/authentic.service');
-var schema = require('../schema/userValidationSchema.json')
+var schema = require('../schema/loginValidationSchema.json')
 var iValidator = require('../../common/iValidator');
 var errorCode = require('../../common/error-code');
 var errorMessage = require('../../common/error-methods');
@@ -11,6 +11,8 @@ const jwt = require('jsonwebtoken');
 function init(router) {
     router.route('/login')
         .post(authentic); 
+    router.route('/signup')
+          .post(signup); 
 }
 
 function authentic(req,res) {
@@ -36,6 +38,30 @@ function authentic(req,res) {
     mail.mail(err);
     res.json(err);
   });
+
+}
+
+
+function signup(req,res) {
+  var signUpData=req.body;
+  
+  //Validating the input entity
+   var json_format = iValidator.json_schema(schema.postSchema, signUpData, "signUpData");
+   if (json_format.valid == false) {
+     return res.status(422).send(json_format.errorMessage);
+   }
+
+   authenticService.signup(signUpData).then((data) => {
+    if(data) {
+       res.json({
+         "success":true,
+         "data":data
+       });
+     }
+   }).catch((err) => {
+     mail.mail(err);
+     res.json(err);
+   });
 
 }
 

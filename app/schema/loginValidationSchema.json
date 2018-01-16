@@ -13,26 +13,16 @@
     "postSchema":{
         "type": "object",
         "required": [
-          "name"     
+          "username"     
         ],
         "properties": {
-          "name" : {
+          "username" : {
             "type": "string",
             "minLength": 1,
             "maxLength": 10
           },
-          "age" : {
-            "type" : "integer",
-            "minimum": 1,
-            "maximum": 150
-          },
-          "state":{
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 10
-          },
-          "country": {
-            "type": "string",
+          "password" : {
+            "type" : "string",
             "minLength": 1,
             "maxLength": 10
           }

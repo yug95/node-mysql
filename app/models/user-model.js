@@ -1,5 +1,6 @@
 var db = require('../../config/database');
 var dbFunc = require('../../config/db-function');
+
 var userModel = {
    getAllUser:getAllUser,
    addUser:addUser,
@@ -10,7 +11,7 @@ var userModel = {
 
 function getAllUser() {
     return new Promise((resolve,reject) => {
-        db.query("SELECT * FROM user",(error,rows,fields)=>{
+        db.query("SELECT * FROM test",(error,rows,fields)=>{
             if(!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
@@ -24,7 +25,7 @@ function getAllUser() {
 
 function getUserById(id) {
     return new Promise((resolve,reject) => {
-        db.query("SELECT * FROM user WHERE id ="+id.id,(error,rows,fields)=>{
+        db.query("SELECT * FROM test WHERE id ="+id.id,(error,rows,fields)=>{
             if(!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
@@ -38,22 +39,22 @@ function getUserById(id) {
 
 function addUser(user) {
      return new Promise((resolve,reject) => {
-        db.query("INSERT INTO user(username,password)VALUES('"+user.username+"','"+user.password+"')",(error,rows,fields)=>{
-            if(!!error) {
+         db.query("INSERT INTO test(name,age,state,country)VALUES('"+user.name+"','"+user.age+"','"+user.state+"','"+user.country+"')",(error,rows,fields)=>{
+            if(error) {
                 dbFunc.connectionRelease;
                 reject(error);
             } else {
                 dbFunc.connectionRelease;
                 resolve(rows);
             }
-       });    
-    })
+          });
+        });
 }
 
 
 function updateUser(id,user) {
     return new Promise((resolve,reject) => {
-        db.query("UPDATE user set username='"+user.username+"',password='"+user.password+"' WHERE id='"+id+"'",(error,rows,fields)=>{
+        db.query("UPDATE test set name='"+user.name+"',age='"+user.age+"',state='"+user.state+"',country='"+user.country+"' WHERE id='"+id+"'",(error,rows,fields)=>{
             if(!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
@@ -67,7 +68,7 @@ function updateUser(id,user) {
 
 function deleteUser(id) {
    return new Promise((resolve,reject) => {
-        db.query("DELETE FROM user WHERE id='"+id+"'",(error,rows,fields)=>{
+        db.query("DELETE FROM test WHERE id='"+id+"'",(error,rows,fields)=>{
             if(!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
