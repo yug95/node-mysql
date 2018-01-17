@@ -19,6 +19,6 @@ scenarios:
         url: "/secureApi/user"
         json:
          name: "{{name}}" 
-         age: 11
+         age: !! "{{age}}"
          state: "{{state}}"
          country: "{{country}}"
