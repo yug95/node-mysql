@@ -11,13 +11,13 @@ var userModel = {
 
 function getAllUser() {
     return new Promise((resolve,reject) => {
-        db.query("SELECT * FROM test",(error,rows,fields)=>{
+        db.query(`CALL get_user()`,(error,rows,fields)=>{
             if(!!error) {
                 dbFunc.connectionRelease;
                 reject(error);
             } else {
                 dbFunc.connectionRelease;
-                resolve(rows);
+                resolve(rows[0]);
             }
        });
     });

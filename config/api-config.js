@@ -13,6 +13,12 @@ var errorCode = require('../common/error-code')
 var errorMessage = require('../common/error-methods')
 var checkToken = require('./secureRoute');
 
+// var schedule = require('node-schedule');
+ 
+// var j = schedule.scheduleJob('*/1 * * * *', function(){
+//   console.log('The answer to life, the universe, and everything!');
+// });
+
 dbfunc.connectionCheck.then((data) =>{
     //console.log(data);
  }).catch((err) => {
