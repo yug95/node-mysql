@@ -56,8 +56,8 @@ app.use(function (err, req, res, next) {
 
 
 // index route
-app.get('/NodeApp', (req,res) => {
-    res.send('Invalid endpoint');
+app.get('/', (req,res) => {
+    res.send('hello world');
 });
 
 var ApiConfig = {
