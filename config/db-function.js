@@ -5,7 +5,7 @@ function connectionCheck() {
     return new Promise((resolve,reject) => {
       db.getConnection(function(err, connection) {
                if(err) {
-                  connection.release();
+                   if(connection) connection.release();
                  reject(err)
               } else  {
                 resolve('success')
