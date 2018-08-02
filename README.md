@@ -118,7 +118,7 @@ npm install bcrypt
 2. other crud route are in secureApi -  `localhost:9890/secureApi/user`.
      * In all GET, PUT, DELETE and POST request pass `token` in header which you get in login response.
 
-Example object for login request -
+Example object for login request (body as JSON object) -
 
 ```
 {
