@@ -113,9 +113,11 @@ npm install bcrypt
 
 # API Usage 
 
-1. login route - `http://localhost:9890/api/login`
+1. signup route - `http://localhost:9890/api/signup`
      * pass json object contain username and password.
-2. other crud route are in secureApi -  `localhost:9890/secureApi/user`.
+2. login route - `http://localhost:9890/api/login`
+     * pass json object contain username and password.
+3. other crud route are in secureApi -  `localhost:9890/secureApi/user`.
      * In all GET, PUT, DELETE and POST request pass `token` in header which you get in login response.
 
 Example object for login request (body as JSON object) -
