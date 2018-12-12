@@ -95,7 +95,7 @@ npm install bcrypt
 
 # Table Creation In DB
 
-1. Create Table user with `id,name,age,state,country` columns.
+1. Create Table user with `id,name,age,state,country, username, password` columns.
 2. you can try creating your table as well just need to change query and table name in model section.
 
 # Get Started
